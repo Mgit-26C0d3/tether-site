@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TETHER: Outrun the Collapse</title>
+<meta name="description" content="A one-thumb swinging game for iPhone. Hold to grab, let go to fly, and stay ahead of the collapse through five worlds. Pay once: no ads, no in-app purchases.">
+<meta name="theme-color" content="#0a0918">
+<meta property="og:title" content="TETHER: Outrun the Collapse">
+<meta property="og:description" content="Hold to grab. Let go to fly. A one-thumb swinging game for iPhone.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/img/icon.png">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/icon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="mark" href="index.html" aria-label="TETHER, home">TETHER</a>
+  <nav aria-label="Site">
+    <a href="#worlds">Worlds</a>
+    <a href="#modes">Modes</a>
+    <a href="support.html">Support</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" aria-labelledby="title">
+  <div class="sky" style="background-image:url('assets/img/hero.jpg')"></div>
+  <canvas id="swing" tabindex="0" role="img" aria-label="A small playable swing. Hold to grab the next bar, let go to fly."></canvas>
+  <div class="shade"></div>
+  <p class="try" aria-hidden="true"><b>TRY IT</b><span>Hold anywhere up here to grab. Let go to fly.</span></p>
+  <div class="wrap words">
+    <p class="label">Outrun the collapse</p>
+    <h1 id="title">TETHER</h1>
+    <p class="pitch">Hold to grab. Let go to fly.</p>
+    <p class="sub">A one-thumb swinging game for iPhone. Five worlds are coming apart behind you, and the only way out is forward.</p>
+    <div class="cta">
+      <a class="store cut" aria-disabled="true">Coming soon to the App Store</a>
+      <span class="facts">iPhone &middot; Pay once &middot; No ads</span>
+    </div>
+  </div>
+</section>
+
+<hr class="beam">
+
+<section aria-labelledby="how">
+  <div class="wrap">
+    <p class="label">How it plays</p>
+    <h2 id="how">One thumb. That is the whole game.</h2>
+    <p class="lede">There is no stick and no second button to learn. Everything you do comes down to when you hold and when you let go.</p>
+    <ol class="beats">
+      <li>
+        <span class="n">01</span>
+        <h3>Hold</h3>
+        <p>Your tether fires at the next bar and pulls you into a swing.</p>
+      </li>
+      <li>
+        <span class="n">02</span>
+        <h3>Let go</h3>
+        <p>Release at the right moment and the swing throws you forward. Release perfectly and it throws you further.</p>
+      </li>
+      <li>
+        <span class="n">03</span>
+        <h3>Keep moving</h3>
+        <p>Speed builds your multiplier, all the way to &times;10. Lose your rhythm and it breaks. Slow down and the collapse catches you.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" id="worlds" aria-labelledby="worlds-title">
+  <div class="wrap">
+    <p class="label">Five worlds</p>
+    <h2 id="worlds-title">Every world changes the rules.</h2>
+    <p class="lede">Between swings you hit the ground running: jump gaps, stomp energy cores, ride zip lines and dodge falling rock. Then each world adds a move of its own.</p>
+  </div>
+  <div class="worlds" tabindex="0" aria-label="The five worlds. Scroll sideways.">
+    <figure class="world cut" style="--accent: var(--cyan)">
+      <img src="assets/img/world-frost.jpg" width="612" height="940" loading="lazy" alt="Shattered Frost: the character swings from a bar over blue mountains toward a frozen gate.">
+      <figcaption><span class="label">World 1</span><h3>Shattered Frost</h3><p>Slide down decks of ice and carry the speed out.</p></figcaption>
+    </figure>
+    <figure class="world cut" style="--accent: var(--ember)">
+      <img src="assets/img/world-foundry.jpg" width="612" height="940" loading="lazy" alt="Ember Foundry: the character swings past a chimney and a giant gear under a red sky.">
+      <figcaption><span class="label">World 2</span><h3>Ember Foundry</h3><p>Blast vents fire you across chasms too wide to jump.</p></figcaption>
+    </figure>
+    <figure class="world cut" style="--accent: var(--pink)">
+      <img src="assets/img/world-glass.jpg" width="612" height="940" loading="lazy" alt="Glass Expanse: the collapse beam burns at the left edge of a desert sunset as the character flies ahead of it.">
+      <figcaption><span class="label">World 3</span><h3>Glass Expanse</h3><p>Bounce from one hanging pane of glass to the next.</p></figcaption>
+    </figure>
+    <figure class="world cut" style="--accent: var(--mint)">
+      <img src="assets/img/world-skybound.jpg" width="612" height="940" loading="lazy" alt="Skybound Isles: the character flies between floating islands and ruins above the clouds.">
+      <figcaption><span class="label">World 4</span><h3>Skybound Isles</h3><p>Ride columns of rising air up to the next island.</p></figcaption>
+    </figure>
+    <figure class="world cut" style="--accent: var(--lilac)">
+      <img src="assets/img/world-astral.jpg" width="612" height="940" loading="lazy" alt="Astral Divide: broken stone rings hang in a violet storm with the collapse beam close behind.">
+      <figcaption><span class="label">World 5</span><h3>Astral Divide</h3><p>Strands of raw energy sling you across the gap.</p></figcaption>
+    </figure>
+  </div>
+  <div class="wrap"><p class="worlds-note">And a winter world that opens every December.</p></div>
+</section>
+
+<section id="modes" aria-labelledby="modes-title">
+  <div class="wrap">
+    <p class="label">Four ways to play</p>
+    <h2 id="modes-title">Five minutes or fifty.</h2>
+    <div class="modes">
+      <article class="mode cut" style="--accent: var(--cyan)">
+        <h3>Daily Run</h3>
+        <p class="line">Take the top score on today's level.</p>
+        <p>One level a day, the same for every player in the world. A new one at midnight UTC.</p>
+      </article>
+      <article class="mode cut" style="--accent: var(--gold)">
+        <h3>Minute Dash</h3>
+        <p class="line">Sixty seconds. Best score wins.</p>
+        <p>Short enough for a queue, and it has its own daily leaderboard.</p>
+      </article>
+      <article class="mode cut" style="--accent: var(--mint)">
+        <h3>Endless</h3>
+        <p class="line">Go until the collapse gets you.</p>
+        <p>All five worlds flowing one into the next, or a single world for as long as you can last.</p>
+      </article>
+      <article class="mode cut" style="--accent: var(--lilac)">
+        <h3>Free Run</h3>
+        <p class="line">Your rules.</p>
+        <p>Tune the physics, replay any level by its code, or practise one move at a time in the training room.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="kit-title">
+  <div class="wrap">
+    <p class="label">Also in the box</p>
+    <h2 id="kit-title">The rest of it.</h2>
+    <dl class="kit">
+      <div><dt>Power-ups</dt><dd>Wide Grab, Jetpack, Overdrive, Shockwave, Propulsion Jet and Extra Life. Time slows while you choose one.</dd></div>
+      <div><dt>Mastery</dt><dd>25 stars to earn across the five worlds. Stars open new worlds and unlock trails, cores and rings for your character.</dd></div>
+      <div><dt>Leaderboards</dt><dd>Game Center boards for the Daily Run, Minute Dash and Endless.</dd></div>
+      <div><dt>Your best</dt><dd>Race the ghost of your best run, and watch a replay of every fall.</dd></div>
+      <div><dt>Sound</dt><dd>Music for every world, and its own weather behind it.</dd></div>
+      <div><dt>Feel</dt><dd>Haptics on every grab, and up to 120 frames a second on ProMotion displays.</dd></div>
+      <div><dt>Comfort</dt><dd>Left-handed controls, reduced flashing and Reduce Motion support.</dd></div>
+      <div><dt>Anywhere</dt><dd>Plays offline. Your progress follows you across your devices with iCloud.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<hr class="beam">
+
+<section class="once" aria-labelledby="once-title">
+  <div class="wrap">
+    <h2 id="once-title">Pay once.</h2>
+    <p>No ads. No in-app purchases. No timers. Everything is in the game.</p>
+    <div class="cta">
+      <a class="store cut" aria-disabled="true">Coming soon to the App Store</a>
+      <span class="facts">iPhone &middot; iOS 18 or later</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div class="id"><img src="assets/img/icon.png" width="46" height="46" alt=""><span>TETHER: Outrun the Collapse</span></div>
+      <nav aria-label="Footer">
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="mailto:madebymike1@icloud.com">madebymike1@icloud.com</a>
+      </nav>
+    </div>
+    <p class="fine">&copy; Michael Lameri 2026</p>
+  </div>
+</footer>
+
+<script src="swing.js"></script>
+</body>
+</html>
