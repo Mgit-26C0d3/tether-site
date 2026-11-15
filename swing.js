@@ -1,6 +1,6 @@
-// The hero's toy: the game's one move, small enough to try before you buy it. It swings by
-// itself; hold anywhere on it (or hold Space) to grab the next bar, let go to fly. Five seconds
-// after you stop, it carries on alone. With Reduce Motion it draws one still frame and stops.
+// The hero's swing: the game's one move, playing by itself behind the title. Nobody steers it
+// (a version you could take over kept dropping visitors into the void, so it is a picture that
+// moves, not a demo). With Reduce Motion it draws one still frame and stops.
 (() => {
   const canvas = document.getElementById("swing");
   if (!canvas) return;
@@ -13,7 +13,6 @@
   const bars = new Map();
   const ball = { x: 0, y: 0, vx: 0, vy: 0 };
   let rope = null, cam = 0, time = 0, last = 0, visible = true;
-  let holding = false, yoursUntil = -1;
   const trail = [];
 
   const barY = i => vh * top + Math.sin(i * 1.7) * vh * 0.04 + Math.sin(i * 0.45) * vh * 0.03;
@@ -35,7 +34,7 @@
     vw = box.width / scale;
     vh = box.height / scale;
     lead = narrow ? 0.4 : 0.68;
-    top = narrow ? 0.2 : 0.26;
+    top = narrow ? 0.14 : 0.26;
     edge = narrow ? 4 : 22;
     ctx.setTransform(dpr * scale, 0, 0, dpr * scale, 0, 0);
     bars.clear();
@@ -67,16 +66,12 @@
 
   function step(dt) {
     time += dt;
-    const yours = time < yoursUntil;
     if (rope) {
       const angle = Math.atan2(ball.x - rope.bar.x, ball.y - rope.bar.y);   // 0 hangs straight down
-      const letGo = yours ? !holding : angle > 0.74 && ball.vy < 0;
-      if (letGo) { rope.bar.gone = time; rope = null; }
-    } else if (yours) {
-      if (holding) rope = nextBar();
+      if (angle > 0.74 && ball.vy < 0) { rope.bar.gone = time; rope = null; }
     } else {
-      // By itself it grabs on the way down, or sooner if the bar is about to slip out of reach.
-      // (It reaches a little further than you can, so the demo never drops itself.)
+      // It grabs on the way down, or sooner if the bar is about to slip out of reach, and it
+      // reaches a little further than the game allows so it never drops itself.
       const next = nextBar(REACH + 70);
       if (next && (ball.vy > 60 || next.len > REACH - 30)) rope = next;
     }
@@ -201,20 +196,6 @@
     draw();
     requestAnimationFrame(frame);
   }
-
-  function press(down) {
-    holding = down;
-    yoursUntil = time + 5;
-  }
-  canvas.addEventListener("pointerdown", e => {
-    e.preventDefault();
-    try { canvas.setPointerCapture(e.pointerId); } catch {}
-    press(true);
-  });
-  canvas.addEventListener("pointerup", () => press(false));
-  canvas.addEventListener("pointercancel", () => press(false));
-  addEventListener("keydown", e => { if (e.code === "Space" && !e.repeat && document.activeElement === canvas) { e.preventDefault(); press(true); } });
-  addEventListener("keyup", e => { if (e.code === "Space" && document.activeElement === canvas) press(false); });
 
   addEventListener("resize", size);
   size();

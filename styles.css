@@ -77,9 +77,9 @@ p { margin: 0 0 1em; }
 .hero { position: relative; min-height: min(100svh, 900px); display: flex; align-items: flex-end; overflow: hidden; isolation: isolate; }
 .hero .sky { position: absolute; inset: 0; z-index: -3; background: #0d0b24 center / cover no-repeat; }
 .hero .shade { position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgba(10, 9, 24, 0.5) 0%, rgba(10, 9, 24, 0) 26%, rgba(10, 9, 24, 0) 46%, rgba(10, 9, 24, 0.86) 82%, var(--ink) 100%); }
-.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; touch-action: none; cursor: pointer; }
-.hero .words { padding: 0 0 clamp(28px, 6vh, 64px); pointer-events: none; }
-.hero .words a, .hero .words button { pointer-events: auto; }
+/* The swing plays itself: it takes no input, so a touch on it scrolls the page as anywhere else. */
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+.hero .words { padding: 0 0 clamp(28px, 6vh, 64px); }
 .hero h1 {
   font-size: clamp(64px, 15vw, 176px);
   letter-spacing: 0.04em;
@@ -89,9 +89,6 @@ p { margin: 0 0 1em; }
 }
 .hero .pitch { font-size: clamp(22px, 3.4vw, 34px); font-style: italic; font-weight: 700; margin: 0 0 8px; }
 .hero .sub { max-width: 34em; color: #d4d6f2; margin: 0 0 22px; }
-.try { position: absolute; top: clamp(76px, 12vh, 120px); right: var(--gutter); text-align: right; pointer-events: none; }
-.try b { display: block; font-family: var(--mono); font-weight: 600; font-size: 12px; letter-spacing: 0.2em; color: var(--cyan); }
-.try span { font-size: 15px; color: #d4d6f2; }
 
 .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
 .store {
@@ -119,16 +116,22 @@ h2 { font-size: clamp(34px, 6vw, 68px); margin: 10px 0 18px; }
 /* The beam: the collapse's own line, used as a divider. */
 .beam { height: 3px; border: 0; margin: 0; background: linear-gradient(90deg, transparent, var(--ember) 18%, #fff3da 50%, var(--ember) 82%, transparent); box-shadow: 0 0 18px rgba(255, 122, 61, 0.75), 0 0 46px rgba(255, 122, 61, 0.35); }
 
-/* Worlds: a strip of tall cards you scroll sideways, like turning through the biome picker. */
-.worlds { display: grid; grid-auto-flow: column; grid-auto-columns: min(74vw, 300px); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 34px var(--gutter) 22px; margin-top: 10px; scrollbar-width: thin; scrollbar-color: #3a3870 transparent; }
-.world { scroll-snap-align: center; position: relative; margin: 0; background: var(--panel); --accent: var(--cyan); }
+/* Worlds: five tall cards in one centred row, on the same measure as the text above them.
+   On a narrow screen there is no room for five, so they become a strip you scroll sideways,
+   starting from the same left margin as everything else. */
+.worlds { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; width: min(100% - 2 * var(--gutter), var(--measure)); margin: 34px auto 0; }
+@media (max-width: 1000px) {
+  .worlds { width: auto; margin: 34px 0 0; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(72vw, 290px); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); padding: 0 var(--gutter) 20px; scrollbar-width: thin; scrollbar-color: #3a3870 transparent; }
+  .world { scroll-snap-align: start; }
+}
+.world { position: relative; margin: 0; background: var(--panel); --accent: var(--cyan); }
 .world img { width: 100%; height: auto; aspect-ratio: 612 / 940; object-fit: cover; }
-.world figcaption { position: absolute; inset: auto 0 0 0; padding: 60px 18px 18px; background: linear-gradient(180deg, transparent, rgba(8, 7, 20, 0.92) 55%); }
-.world h3 { font-size: 26px; color: #fff; }
-.world p { margin: 6px 0 0; font-size: 15px; color: #dcdcf4; }
+.world figcaption { position: absolute; inset: auto 0 0 0; padding: 56px 16px 16px; background: linear-gradient(180deg, transparent, rgba(8, 7, 20, 0.92) 55%); }
+.world h3 { font-size: clamp(19px, 1.75vw, 24px); color: #fff; margin-top: 4px; }
+.world p { margin: 6px 0 0; font-size: 14px; line-height: 1.4; color: #dcdcf4; }
 .world .label { color: var(--accent); }
 .world::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--accent); box-shadow: 0 0 16px var(--accent); z-index: 1; }
-.worlds-note { margin-top: 6px; color: var(--muted); }
+.worlds-note { margin-top: 22px; color: var(--muted); }
 
 /* Modes: the main menu's tiles. */
 .modes { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: 36px; }
@@ -189,7 +192,6 @@ details > div p:last-child { margin: 0; }
 @media (max-width: 620px) {
   body { font-size: 16px; }
   .store { font-size: 15px; letter-spacing: 0.03em; padding: 14px 18px; }
-  .try { left: var(--gutter); right: var(--gutter); text-align: left; top: 70px; }
   .top nav a:nth-child(-n+2) { display: none; }
   .kit div { grid-template-columns: 1fr; gap: 4px; }
 }
